@@ -26,6 +26,7 @@ Route::get('/posts/trashed', [App\Http\Controllers\PostController::class, 'posts
 Route::get('/post/create', [App\Http\Controllers\PostController::class, 'create'])->name('post.create');
 //Route::get('/post/create', 'PostController@create' )->name('post.create');
 Route::post('/post/store', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+Route::get('/post/store/approve/{post}', [App\Http\Controllers\PostController::class, 'approve'])->name('post.approve');
 //Route::post('/post/store', 'PostController@store' )->name('post.store');
 Route::get('/post/show/{slug}', [App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 //Route::get('/post/show/{slug}', 'PostController@show' )->name('post.show');
@@ -42,3 +43,4 @@ Route::get('/contact', [App\Http\Controllers\PostController::class, 'search']);
 Route::get('/staff', [App\Http\Controllers\PostController::class, 'search1']);
 Route::get('/search', [App\Http\Controllers\PostController::class, 'search2']);
 Route::get('/arab', [App\Http\Controllers\PostController::class, 'arab']);
+Route::get('/admin', [App\Http\Controllers\PostController::class, 'admin']);

@@ -25,6 +25,7 @@ class post extends Model
         return asset($photo);
     }
     protected $casts =[
-        'likes' =>'integer'
+        'likes' =>'integer',
+        'approved'=>'boolean'
     ];
 }

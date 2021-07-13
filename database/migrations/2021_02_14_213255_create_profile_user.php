@@ -13,18 +13,18 @@ class CreateProfileUser extends Migration
      */
     public function up()
     {
-        Schema::create('profile_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('province');
-            $table->integer('user_id')->unsigned();
-            $table->string('gender');
-            $table->longText('bio');
-            $table->longText('facebook');
-            $table->timestamps();
+        // Schema::create('profile_user', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('province');
+        //     $table->integer('user_id')->unsigned();
+        //     $table->string('gender');
+        //     $table->longText('bio');
+        //     $table->longText('facebook');
+        //     $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade');
-        });
+        //     $table->foreign('user_id')->references('id')->on('users')
+        //     ->onDelete('cascade');
+        // });
     }
 
     /**

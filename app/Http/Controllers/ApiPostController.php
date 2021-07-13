@@ -9,7 +9,7 @@ use App\Models\post;
 class ApiPostController extends Controller
 {
     public function getAllPosts(){
-        return post::all()->toJson();
+        return post::where('approved','=',true)->get();
     }
 
 
@@ -28,7 +28,7 @@ class ApiPostController extends Controller
 
 
     public function show($id){
-        return post::find($id);   
+        return post::where('approved','=',true)->find($id);   
     }
 
 
