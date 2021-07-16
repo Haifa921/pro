@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/',  [App\Http\Controllers\PostController::class, 'index2'])->name('posts1');
+Route::get('/',  [App\Http\Controllers\HomeController::class, 'index'])->name('posts1');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -42,5 +42,5 @@ Route::get('/post/restore/{id}', [App\Http\Controllers\PostController::class, 'r
 Route::get('/contact', [App\Http\Controllers\PostController::class, 'search']);
 Route::get('/staff', [App\Http\Controllers\PostController::class, 'search1']);
 Route::get('/search', [App\Http\Controllers\PostController::class, 'search2']);
-Route::get('/arab', [App\Http\Controllers\PostController::class, 'arab']);
+Route::get('/lang/{locale}', [App\Http\Controllers\PostController::class, 'arab']);
 Route::get('/admin', [App\Http\Controllers\PostController::class, 'admin']);

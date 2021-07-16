@@ -9,6 +9,7 @@ use App\Tag;
 use Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PostController extends Controller
 {
@@ -36,10 +37,14 @@ class PostController extends Controller
         return view('welcome')->with('posts', $posts);
     }
 
-    public function arab()
+    public function arab($locale)
     {
-
-        return view('posts.arab');
+        if (! in_array($locale, ['en', 'ar'])) {
+            abort(400);
+        }
+        App::setLocale($locale);
+    
+        return redirect()->back();
     }
 
     public function index2()

@@ -45,164 +45,158 @@
 
     <div class="extra">
         <div class="main">
-            <!--==============================header=================================-->
-            <header>
-                <div class="indent">
-                    <div class="row-top">
-                        <div class="wrapper">
-                            <h1><a href="index.html">Fix it</a></h1>
-                            <strong class="support">+1 959-456-7856</strong>
+            <div class="content-holder">
+                <!--==============================header=================================-->
+                <header>
+                    <div class="indent">
+                        <div class="row-top">
+                            <div class="wrapper">
+                                <h1><a href="index.html">Fix it</a></h1>
+                                <strong class="support">+1 959-456-7856</strong>
+                            </div>
+
                         </div>
 
-                    </div>
+                        <nav>
+                            <ul class="menu">
+                                <li><a class="active" href="{{ url('/home') }}">home</a></li>
+                                <li><a href="{{ url('/posts') }}">addservice</a></li>
+                                <li><a href="{{ url('/staff') }}">Staff</a></li>
 
-                    <nav>
-                        <ul class="menu">
-                            <li><a class="active" href="{{ url('/home') }}">home</a></li>
-                            <li><a href="{{ url('/posts') }}">addservice</a></li>
-                            <li><a href="{{ url('/staff') }}">Staff</a></li>
-
-                            <li><a href="{{ url('/contact') }}">Contact</a></li>
-                            @if (Route::has('login'))
-                            @auth
-                            <li><a href="#" role="button">
-                                    {{ Auth::user()->name }}
-                                </a>
-                            </li>
-                            <li class="last">
-
-                                <div>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                <li><a href="{{ url('/contact') }}">Contact</a></li>
+                                @if (Route::has('login'))
+                                @auth
+                                <li><a href="#" role="button">
+                                        {{ Auth::user()->name }}
                                     </a>
+                                </li>
+                                <li class="last">
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @else
-                            <li><a href="{{ route('login') }}">login</a></li>
-                            @if (Route::has('register'))
-                            <li class="last"><a href="{{ route('register') }}">register</a></li>
+                                    <div>
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                @else
+                                <li><a href="{{ route('login') }}">login</a></li>
+                                @if (Route::has('register'))
+                                <li class="last"><a href="{{ route('register') }}">register</a></li>
+                                @endif
+                                @endauth
+                            </ul>
                             @endif
-                            @endauth
-                        </ul>
-                        @endif
-                    </nav>
-                </div>
-            </header>
-            <section style="padding-top:60px">
+                        </nav>
+                    </div>
+                </header>
+
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    search to fix
-                                </div>
-                                <div class="car-body" style="padding-top:30px;padding+bottom:40px;padding-left:20px;padding-right:20px;">
-                                    <form action="{{ url('/search') }}" method="get">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control typeahead" name="search" placeholder="search ....">
-                                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search </button>
-                                        </div>
-                                    </form>
+                    <div class="jumbotron ">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-md-8">
+                                <div class="display-4" style="margin-bottom: .6rem;">All services </div>
+                            </div>
+                            <!-- search  -->
+                            <div class="col-md-4">
+                                <div class="">
+                                    <div>
+                                        <form action="{{ url('/search') }}" method="get">
+                                            <div class="form-group row" style="margin-bottom: 0;">
+                                                <input type="text" class="form-control typeahead col-md" name="search" placeholder="Enter your search">
+                                                <button class="btn my-2 my-sm-0 col-sm-1" type="submit"><i class="fa fa-search" aria-hidden="true"></i> </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /search  -->
                         </div>
                     </div>
                 </div>
-            </section>
-            <br>
-            <br>
+                <div class="container">
+                    <div class="row">
+                        @if ($posts->count() > 0 )
+                        <div class="col">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col"> Date</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">content-reigon</th>
+                                        <th scope="col">Photo</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $i = 1;
+                                    @endphp
+                                    @foreach ($posts as $item)
+                                    <tr>
+                                        <th scope="row">{{$i++}}</th>
+                                        <td>{{$item->title}}</td>
+                                        <td>{{$item->created_at->diffForhumans() }}</td>
+                                        <td>{{$item->user->name}}</td>
+                                        <td>{{$item->content}}</td>
+                                        <td>
+                                            @if ($item->photo != null)
+                                            <img src="{{URL::asset($item->photo)}}" alt="{{$item->photo}}" {{-- <img src="{{$item->photo}}" alt="{{$item->photo}}" --}} class="img-tumbnail" width="100" height="100">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="text-success" href="{{route('post.show',['slug'=> $item->slug])}}"> <i class="fas  fa-2x fa-eye"></i> </a>
+                                            @if ($item->user_id == Auth::id() || Auth::user()->is_admin)
+                                            &nbsp;&nbsp;
+                                            <a href="{{route('post.edit',['id'=> $item->id])}}"> <i class="fas fa-2x fa-edit"></i> </a>&nbsp;&nbsp;
+                                            <a class="text-danger" href="{{route('post.destroy',['id'=> $item->id])}}"> <i class="fas  fa-2x fa-trash-alt"></i> </a>
+                                            @endif
 
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="jumbotron" style="display: flex;padding:1rem;">
-                            <h1 class="display-4">All Un-approved Posts: </h1>
+                                            @if( Auth::user()->is_admin)
+                                            <a href="{{route('post.approve', $item->id)}}" "><i class=" fas fa-2x fa-check" style="color:green;"></i></a>
+
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+
+
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-
-
-                    @if ($posts->count() > 0 )
-                    <div class="col">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col"> Date</th>
-                                    <th scope="col">User</th>
-                                    <th scope="col">content-reigon</th>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                $i = 1;
-                                @endphp
-                                @foreach ($posts as $item)
-                                <tr>
-                                    <th scope="row">{{$i++}}</th>
-                                    <td>{{$item->title}}</td>
-                                    <td>{{$item->created_at->diffForhumans() }}</td>
-                                    <td>{{$item->user->name}}</td>
-                                    <td>{{$item->content}}</td>
-                                    <td>
-                                        @if ($item->photo != null)
-                                        <img src="{{URL::asset($item->photo)}}" alt="{{$item->photo}}" {{-- <img src="{{$item->photo}}" alt="{{$item->photo}}" --}} class="img-tumbnail" width="100" height="100">
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="text-success" href="{{route('post.show',['slug'=> $item->slug])}}"> <i class="fas  fa-2x fa-eye"></i> </a>
-                                        @if ($item->user_id == Auth::id() || Auth::user()->is_admin)
-                                        &nbsp;&nbsp;
-                                        <a href="{{route('post.edit',['id'=> $item->id])}}"> <i class="fas fa-2x fa-edit"></i> </a>&nbsp;&nbsp;
-                                        <a class="text-danger" href="{{route('post.destroy',['id'=> $item->id])}}"> <i class="fas  fa-2x fa-trash-alt"></i> </a>
-                                        @endif
-
-                                        @if( Auth::user()->is_admin)
-                                        <a href="{{route('post.approve', $item->id)}}" "><i class="fas fa-2x fa-check" style="color:green;"></i></a>
-                                       
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-
-
-                    </div>
-                    @else
-                    <div class="col">
-                        <div class="alert alert-danger" role="alert">
-                            Not posts
+                        @else
+                        <div class="col">
+                            <div class="alert alert-danger" role="alert">
+                                Not posts
+                            </div>
                         </div>
+
+                        @endif
+
+
                     </div>
-
-                    @endif
-
-
                 </div>
             </div>
-            <footer>
-                <div class="main">
-                    <div class="footer-bg">
-                        <p class="prev-indent-bot">Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved | Design by <a target="_blank" href="http://www.templatemonster.com/">TemplateMonster.com</a></p>
-                        <ul class="list-services">
-                            <li><a class="tooltips" href="#"></a></li>
-                            <li class="item-1"><a class="tooltips" href="#"></a></li>
-                            <li class="item-2"><a class="tooltips" href="#"></a></li>
-                        </ul>
-                    </div>
-                </div>
         </div>
+        <footer>
+            <div class="main">
+                <div class="footer-bg">
+                    <p class="prev-indent-bot">Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved | Design by <a target="_blank" href="http://www.templatemonster.com/">TemplateMonster.com</a></p>
+                    <ul class="list-services">
+                        <li><a class="tooltips" href="#"></a></li>
+                        <li class="item-1"><a class="tooltips" href="#"></a></li>
+                        <li class="item-2"><a class="tooltips" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
     </div>
     </div>

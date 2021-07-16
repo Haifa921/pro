@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
   <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen">
   <script src="js/jquery-1.6.3.min.js"></script>
-  <script src="js/cufon-yui.js"></script>
-  <script src="js/cufon-replace.js"></script>
+  <!-- <script src="js/cufon-yui.js"></script>
+  <script src="js/cufon-replace.js"></script> -->
   <script src="js/NewsGoth_BT_400.font.js"></script>
   <script src="js/FF-cash.js"></script>
   <script src="js/script.js"></script>
@@ -37,7 +37,7 @@
         <div class="indent">
           <div class="row-top">
             <div class="wrapper">
-              <h1><a href="index.html">Fix it</a></h1>
+              <h1><a href="{{route('home')}}">Fix it</a></h1>
               <strong class="support">+1 959-456-7856</strong>
             </div>
 
@@ -45,14 +45,14 @@
 
           <nav>
             <ul class="menu">
-              <li><a class="active" href="{{ url('/') }}">home</a></li>
+              <li><a class="active" href="{{ url('/home') }}">{{__('msg.Home')}}</a></li>
               @if (Auth::user()->is_admin)
-              <li><a href="{{url('/admin')}}">Admin</a></li>
+              <li><a href="{{url('/admin')}}">{{__('msg.Admin')}}</a></li>
               @endif
-              <li><a href="{{ url('/posts') }}">addservice</a></li>
-              <li><a href="{{ url('/staff') }}">staff</a></li>
+              <li><a href="{{ url('/posts') }}">{{__('msg.addservice')}}</a></li>
+              <li><a href="{{ url('/staff') }}">{{__('msg.staff')}}</a></li>
 
-              <li><a href="{{ url('/contact') }}">contact</a></li>
+              <li><a href="{{ url('/contact') }}">{{__('msg.contact')}}</a></li>
               @if (Route::has('login'))
               @auth
               <li><a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -99,7 +99,7 @@
       <!--==============================aside================================-->
       <aside>
         <div class="wrapper">
-          <div class="column-1">
+          <div class="column-1 column">
             <div class="box">
               <div class="aligncenter">
                 <h4>Electrical Services</h4>
@@ -113,7 +113,7 @@
               </div>
             </div>
           </div>
-          <div class="column-1">
+          <div class="column-1 column">
             <div class="box">
               <div class="aligncenter">
                 <h4>Plumbing Services</h4>
@@ -127,7 +127,7 @@
               </div>
             </div>
           </div>
-          <div class="column-2">
+          <div class="column-2 column">
             <div class="box">
               <div class="aligncenter">
                 <h4>Welding Services</h4>

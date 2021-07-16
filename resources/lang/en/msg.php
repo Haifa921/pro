@@ -4,8 +4,12 @@ return[
     'add Services'=>"Add Services",
     'staff'=>"staff",
     'contacts'=>"contacts",
-    'Home'=>"Home"
+    'Home'=>"Home",
+    'Admin'=>"Admin",
+    'addservice'=>'Add service',
+    'staff'=>'Staff',
+    'contact'=>'contact',
 
-]
+];
 
 ?>
