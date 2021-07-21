@@ -6,7 +6,7 @@ use App\Models\post;
 use App\Models\User;
 use App\Tag;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -43,7 +43,7 @@ class PostController extends Controller
             abort(400);
         }
         App::setLocale($locale);
-    
+        session()->put('locale', $locale);
         return redirect()->back();
     }
 
