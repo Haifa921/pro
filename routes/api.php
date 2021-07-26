@@ -36,5 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/posts/{id}', [ApiPostController::class, 'update']);
     Route::delete('/posts/{id}', [ApiPostController::class, 'destroy']);
     
+    Route::get('/admin/posts', [ApiPostController::class, 'getAdminPosts']);
+    Route::post('/admin/posts/{post}/approve', [ApiPostController::class, 'adminApprovePost']);
+
     Route::post('/logout', [AuthController::class,'logout']);
 });
