@@ -48,7 +48,7 @@
                 <div class="row-top">
                     <div class="wrapper">
                         <h1><a href="index.html">Fix it</a></h1>
-                        <strong class="support">+1 959-456-7856</strong>
+                        <strong class="support">+963 949636914</strong>
                     </div>
 
                 </div>

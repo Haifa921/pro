@@ -23,7 +23,10 @@ class PostController extends Controller
     //<div class="d-flex justify-content-center">
     // {!! $posts->links() !!}
     //</div>
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $posts = post::where('approved', true)->orderBy('created_at', 'DESC')->get();
@@ -39,7 +42,7 @@ class PostController extends Controller
 
     public function arab($locale)
     {
-        if (! in_array($locale, ['en', 'ar'])) {
+        if (!in_array($locale, ['en', 'ar'])) {
             abort(400);
         }
         App::setLocale($locale);
@@ -53,12 +56,12 @@ class PostController extends Controller
         return view('posts.index1');
     }
 
-public function approve(Post $post)
-{
-    $post->approved = true;
-    $post->save();
-    return redirect()->back();
-}
+    public function approve(Post $post)
+    {
+        $post->approved = true;
+        $post->save();
+        return redirect()->back();
+    }
     public function postsTrashed()
     {
         $posts = post::onlyTrashed()->where('user_id', Auth::id())->get();
@@ -196,8 +199,8 @@ public function approve(Post $post)
     public function search2(Request $request)
     {
         $search = $request->get('search');
-        $posts = post::where('title', 'Like', '%' . $search . '%')->get();
-        $posts = post::where('content', 'Like', '%' . $search . '%')->get();
+        $posts = post::where('title', 'Like', '%' . $search . '%')
+        ->orWhere('content', 'Like', '%' . $search . '%')->get();
         return view('posts.index', ['posts' => $posts]);
     }
     public function admin()

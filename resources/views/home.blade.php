@@ -38,7 +38,7 @@
           <div class="row-top">
             <div class="wrapper">
               <h1><a href="{{route('home')}}">Fix it</a></h1>
-              <strong class="support">+1 959-456-7856</strong>
+              <strong class="support">+963 949636914</strong>
             </div>
 
           </div>
@@ -46,8 +46,10 @@
           <nav>
             <ul class="menu">
               <li><a class="active" href="{{ url('/home') }}">{{__('msg.Home')}}</a></li>
+              @if(Auth::user())
               @if (Auth::user()->is_admin)
               <li><a href="{{url('/admin')}}">{{__('msg.Admin')}}</a></li>
+              @endif
               @endif
               <li><a href="{{ url('/posts') }}">{{__('msg.addservice')}}</a></li>
               <li><a href="{{ url('/staff') }}">{{__('msg.staff')}}</a></li>
