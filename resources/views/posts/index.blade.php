@@ -14,8 +14,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}">
   <script src="js/jquery-1.6.3.min.js"></script>
-  <script src="js/cufon-yui.js"></script>
-  <script src="js/cufon-replace.js"></script>
+  
   <script src="js/NewsGoth_BT_400.font.js"></script>
   <script src="js/FF-cash.js"></script>
   <script src="js/script.js"></script>
@@ -39,6 +38,11 @@
 <script src="js/html5.js"></script>
 <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 <![endif]-->
+<style>
+.checked {
+  color: orange;
+}
+</style>
 </head>
 
 <body class="antialiased">
@@ -53,7 +57,7 @@
             <div class="row-top">
               <div class="wrapper">
                 <h1><a href="index.html">Fix it</a></h1>
-                <strong class="support">+1 959-456-7856</strong>
+                <strong class="support">+963 949636914</strong>
               </div>
 
             </div>
@@ -61,10 +65,10 @@
             <nav>
               <ul class="menu">
                 <li><a class="active" href="{{ url('/home') }}">home</a></li>
-                <li><a href="{{ url('/posts') }}">addservice</a></li>
-                <li><a href="{{ url('/staff') }}">Staff</a></li>
+                <li><a href="{{ url('/posts') }}">{{__('msg.addservice')}}</a></li>
+                <li><a href="{{ url('/staff') }}">{{__('msg.staff')}}</a></li>
 
-                <li><a href="{{ url('/contact') }}">Contact</a></li>
+                <li><a href="{{ url('/contact') }}">{{__('msg.contact')}}</a></li>
                 @if (Route::has('login'))
                 @auth
                 <li><a href="#" role="button">
@@ -100,7 +104,7 @@
           <div class="jumbotron ">
             <div class="row" style="align-items: center;">
               <div class="col-md-8">
-                <div class="display-4" style="margin-bottom: .6rem;">All services </div>
+                <div class="display-4" style="margin-bottom: .6rem;">يمكنك البحث عن مهنة اومكان محدد </div>
               </div>
 
               <!-- search  -->
@@ -135,12 +139,13 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
+                    <th scope="col">Career</th>
                     <th scope="col"> Date</th>
                     <th scope="col">User</th>
                     <th scope="col">content-reigon</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Actions</th>
+                    <th scope="col">Rating</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,6 +172,13 @@
                       <a class="text-danger" href="{{route('post.destroy',['id'=> $item->id])}}"> <i class="fas  fa-2x fa-trash-alt"></i> </a>
                       @endif
 
+                    </td>
+                    <td>
+                    <span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
                     </td>
                   </tr>
                   @endforeach

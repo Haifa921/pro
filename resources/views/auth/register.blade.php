@@ -11,8 +11,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen">
 <script src="js/jquery-1.6.3.min.js"></script>
-<script src="js/cufon-yui.js"></script>
-<script src="js/cufon-replace.js"></script>
+
 <script src="js/NewsGoth_BT_400.font.js"></script>
 <script src="js/FF-cash.js"></script>
 <script src="js/script.js"></script>
@@ -47,17 +46,17 @@
         <div class="row-top">
           <div class="wrapper">
             <h1><a href="index.html">Fix it</a></h1>
-            <strong class="support">+1 959-456-7856</strong> </div>
+            <strong class="support">+963 949636914</strong> </div>
        
         </div>
       
         <nav>
           <ul class="menu">
             <li><a class="active" href="#">Home</a></li>
-            <li><a href="#">Add Services</a></li>
-            <li><a href="">Staff</a></li>
+            <li><a href="#">{{__('msg.add Services')}}</a></li>
+            <li><a href="">{{__('msg.staff')}}</a></li>
             
-            <li class="last"><a href="#">Contacts</a></li>
+            <li class="last"><a href="#">{{__('msg.contacts')}}</a></li>
            
             <li class="last"><a href="{{ url('/login') }}">login</a></li>
            
