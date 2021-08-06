@@ -19,6 +19,7 @@ class ApiPostController extends Controller
             return post::where('approved', '=', false)->get();
         return abort(403);
     }
+    
     public function adminApprovePost(Post $post, Request $request)
     {
         if ($post == null)

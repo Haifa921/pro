@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiPostController;
+use App\Http\Controllers\ApiUserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/posts/{id}', [ApiPostController::class, 'update']);
     Route::delete('/posts/{id}', [ApiPostController::class, 'destroy']);
     
+    Route::get('/users/popular', [ApiUserController::class, 'getMostPopular']);
+    Route::post('/users/{user}/rate', [ApiUserController::class, 'rateUser']);
+
     Route::get('/admin/posts', [ApiPostController::class, 'getAdminPosts']);
     Route::post('/admin/posts/{post}/approve', [ApiPostController::class, 'adminApprovePost']);
 
