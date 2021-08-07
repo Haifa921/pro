@@ -46,10 +46,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends=['rating'];
+    protected $appends = ['rating'];
 
     public function getRatingAttribute()
     {
         return $this->averageRating();
+    }
+
+    public function favorates()
+    {
+        return $this->belongsToMany(User::class,'favorate_workers','user_id',"worker_id");
     }
 }

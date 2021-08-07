@@ -39,6 +39,9 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/users/popular', [ApiUserController::class, 'getMostPopular']);
     Route::post('/users/{user}/rate', [ApiUserController::class, 'rateUser']);
+    Route::get('/users/favorate/{user}', [ApiUserController::class, 'getFavorate']);
+    Route::post('/users/favorate', [ApiUserController::class, 'addToFavorate']);
+    Route::delete('/users/favorate', [ApiUserController::class, 'removeFromFavorate']);
 
     Route::get('/admin/posts', [ApiPostController::class, 'getAdminPosts']);
     Route::post('/admin/posts/{post}/approve', [ApiPostController::class, 'adminApprovePost']);

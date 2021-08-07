@@ -19,4 +19,21 @@ class ApiUserController extends Controller
         $user->rateOnce($request->rating);
         return response('OK');
     }
+    
+    public function addToFavorate(Request $request)
+    {
+        Auth::user()->favorates()->attach(2);
+        return response('OK');
+    }
+    
+    public function removeFromFavorate(Request $request)
+    {
+        Auth::user()->favorates()->detach($request->worker_id);
+        return response('OK');
+    }
+
+    public function getFavorate(User $user)
+    {       
+        return $user->favorates;
+    }
 }
