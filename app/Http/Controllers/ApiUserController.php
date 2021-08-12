@@ -22,7 +22,7 @@ class ApiUserController extends Controller
     
     public function addToFavorate(Request $request)
     {
-        Auth::user()->favorates()->attach(2);
+        Auth::user()->favorates()->attach($request->worker_id);
         return response('OK');
     }
     

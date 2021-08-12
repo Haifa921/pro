@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\post;
-
+use Illuminate\Support\Facades\Auth;
 
 class ApiPostController extends Controller
 {
@@ -35,7 +35,7 @@ class ApiPostController extends Controller
     {
         $post = new post();
         $post->title = $request->title;
-        $post->user_id = $request->user_id;
+        $post->user_id = Auth::user()->id;
         $post->content = $request->content;
         $post->photo = $request->photo;
         $post->slug = $request->slug;
