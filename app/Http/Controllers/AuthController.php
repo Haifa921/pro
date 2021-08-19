@@ -26,10 +26,11 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return response()->json(['status_code' => 200,
-         'message' => 'user created succesfuly',
-         'token' => $user->createToken($request->name)->plainTextToken
-         ]);
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'user created succesfuly',
+            'token' => $user->createToken($request->name)->plainTextToken
+        ]);
     }
 
 
@@ -49,7 +50,10 @@ class AuthController extends Controller
         }
         $user = User::where('email', $request->email)->first();
         $tokenResult = $user->createToken('authToken')->plainTextToken;
-        return response()->json(['status_code' => 200, 'token' => $tokenResult]);
+        return response()->json([
+            'status_code' => 200, 'token' => $tokenResult,
+            'id' => $user->id, 'name' => $user->name, 'is_admin' => $user->is_admin
+        ]);
     }
 
     public function logout(Request $request)

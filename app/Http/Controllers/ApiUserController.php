@@ -24,7 +24,7 @@ class ApiUserController extends Controller
     {
         Auth::user()->favorates()->attach($request->worker_id);
         return response('OK');
-    }
+    } 
     
     public function removeFromFavorate(Request $request)
     {
